@@ -1,0 +1,60 @@
+/**
+ * Modus styles
+ *
+ * @author Timothy M Eagan
+ */
+
+.logo {
+    height: 75px;
+    width: 350px;
+    background-image: url("../lib/images/logo.png");
+    background-position: 1px 1px;
+    background-repeat: no-repeat;
+    position: fixed;
+    left: 10px;
+    bottom: 10px;
+    z-index: 30;    
+}
+
+.reveal .slides {
+    width: 1400px;
+    margin-top: -440px;
+    margin-left: -700px;
+}
+
+.reveal ol>li {
+    margin: 20px 0;
+}
+.reveal li small {
+    vertical-align: baseline;
+}
+.reveal li {
+    white-space: nowrap;
+}
+
+.reveal em {
+    color: #cc0;
+    font-style: normal;
+}
+
+.reveal code {
+    font-size: 20pt;
+    font-weight: bold;
+    line-height: normal;
+}
+
+.reveal .left {
+    float: left;
+    width: 50%;
+}
+.reveal .right {
+    float: right;
+    width: 50%;
+}
+.reveal .w60 {
+    width: 60%;
+}
+.reveal .w35 {
+    width: 35%;
+    font-size: 20pt;
+}

@@ -1,308 +1,416 @@
 <!doctype html>  
 <html lang="en">
 	
-	<head>
-		<meta charset="utf-8">
-		
-		<title>reveal.js - HTML5 Presentations</title>
-
-		<meta name="description" content="An easy to use CSS 3D slideshow tool for quickly creating good looking HTML presentations.">
-		<meta name="author" content="Hakim El Hattab">
-
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-		
-		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-		
-		<link rel="stylesheet" href="css/reset.css">
-		<link rel="stylesheet" href="css/main.css">
-		<link rel="stylesheet" href="css/print.css" type="text/css" media="print">
-
-		<link rel="stylesheet" href="lib/css/zenburn.css">
-	</head>
+<head>
+	<meta charset="utf-8">
 	
-	<body>
-		
-		<div class="reveal">
+	<title>Prov:JS - Starting a Project with ExtJS 4</title>
 
-			<!-- Used to fade in a background when a specific slide state is reached -->
-			<div class="state-background"></div>
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	
+	<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+	
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/print.css" type="text/css" media="print">
+
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+	<link rel="stylesheet" href="css/modus.css">
+</head>
+	
+<body>
+	
+<div class="reveal">
+
+	<!-- Used to fade in a background when a specific slide state is reached -->
+	<div class="state-background"></div>
+	
+	<!-- Any section element inside of this container is displayed as a slide -->
+	<div class="slides">
+
+<!--
+Title
+-->
+		<section>
+			<h1>Prov : JS</h1>
+			<h3 class="inverted">Starting a Project with ExtJS 4</h3>
+			<script>
+				// Delicously hacky. Look away.
+				if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) ) document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
+			</script>
+			<ul>
+				<li class="fragment">Basic Requirements</li>
+				<li class="fragment">Directory Structure</li>
+				<li class="fragment">Hello World Test</li>
+				<li class="fragment">Compass Setup</li>
+				<li class="fragment">Deployment</li>
+			</ul>
+		</section>
+
+<!--
+Requirements
+-->
+		<section>
+			<section>
+				<h2>Some Basic Requirements</h2>
+				<img src="lib/images/ikea-cat.jpg">
+			</section>
+			<h2>Some Basic Requirements</h2>
+			<ol>
+				<li class="fragment">
+					<strong>A decent JavaScript debugger</strong>
+					<ul>
+						<li><a href="http://www.google.com/chrome/">Google Chrome</a></li>
+						<li><a href="http://www.mozilla.com/en-US/firefox/fx/">Mozilla Firefox</a> 
+							with the <a href="http://getfirebug.com/">Firebug</a> plugin</li>
+					</ul>
+				</li>
+				<li class="fragment"><strong>Web Server</strong>
+					<ul>
+						<li>XHR over local file:// protocol is cross origin restricted</li>
+						<li>Try <a href="http://httpd.apache.org/">Apache</a></li>
+					</ul>
+				</li>
+				<li class="fragment"><strong>The Ext JS 4 SDK</strong>
+					<ul>
+						<li>Get the <a href="http://www.sencha.com/products/extjs/download/">Ext JS 4 SDK</a> and unzip it to your webroot</li>
+						<li>http://localhost/extjs/index.html should open the Ext Welcome page.</li>
+					</ul>
+				</li>
+			</ol>
+		</section>
+
+	<!--
+	Directory names
+	-->
+		<section>
+			<section>
+				<h2>Directory Structure</h2>
+				<p>
+					A bad setup can lead to problems
+				</p>
+				<img src="lib/images/more_bad_behavior.jpg">
+			</section>
+			<section>
+				<h2>Directory Structure</h2>
+				<p>
+					Recommended directory structure for your project:
+				</p>
+				<ul>
+					<li>MyApp</li>
+					<ul>
+						<li>app</li>
+							<ul>
+								<li>cmp <small>- custom base components</small></li>
+								<li>controller</li>
+								<li>model</li>
+								<li>store</li>
+								<li>view</li>
+								<li>utils <small>...and other directories as needed</small></li>
+							</ul>
+						<li>extjs</li>
+						<li>resources</li>
+							<ul>
+								<li>css</li>
+								<li>images</li>
+								<li>sass <small>- "compass watch" here</small></li>
+							</ul>
+						<li>app.js <small>- add to index.html</small></li>
+						<li>index.html <small>- single page app</small></li>
+					</ul>
+				</ul>
+			</section>
+
+		<!--
+		Inside the APP directory
+		-->
+			<section>
+				<h2>Inside MyApp/app</h2>
+				<ul>
+					<li>/app</li>
+						<ul>
+							<li>/cmp</li>
+							<li>/controller</li>
+							<li>/model</li>
+							<li>/store</li>
+							<li>/<em>view</em></li>
+								<ul class="fragment">
+									<li>Login.js</li>
+									<li>Viewport.js</li>
+									<li>/candidate</li>
+									<li>/<em>company</em></li>
+										<ul class="fragment">
+											<li>TabPanel.js</li>
+											<li>/search</li>
+											<li>/<em>detail</em></li>
+												<ul class="fragment">
+													<li>History.js</li>
+													<li>KeyData.js</li>
+													<li><em>Panel.js</em> - classname = <em>MyApp.view.company.detail.Panel</em></li>
+												</ul>
+										</ul>
+								</ul>
+						</ul>
+				</ul>
+			</section>
 			
-			<!-- Any section element inside of this container is displayed as a slide -->
-			<div class="slides">
-				<section>
-					<h1>Reveal.js</h1>
-					<h3 class="inverted">CSS 3D Presentations</h3>
-					<script>
-						// Delicously hacky. Look away.
-						if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) ) document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
-					</script>
-				</section>
-				
-				<section>
-					<h2>Heads Up</h2>
-					<p>
-						reveal.js is an easy to use, HTML based, presentation tool. You'll need a modern browser with 
-						support for CSS 3D transforms to see it in its full glory.
-					</p>
-					<p>
-						<i><small>- <a href="http://hakim.se">Hakim El Hattab</a> / <a href="http://twitter.com/hakimel">@hakimel</a></small></i>
-					</p>
+	<!--
+	Dynamic Loading
+	-->				
+			<section>
+				<h2>Dynamic Loader</h2>
+				<ul>
+					<li>Ext JS 4 comes with a system for dynamically loading only<br> 
+						the JavaScript resources necessary to run your app.<br><br></li>  
+					<li>When you instantiate a class, Ext JS checks to see if your<br> 
+						classname has already been defined. If it hasn't, the<br> 
+						loader will attempt to load the JavaScript file that cooresponds<br>
+						 to	your class name.<br><br></li>  
+					<li>For a classname of <em>MyApp.view.company.detail.Panel</em>,<br> 
+						the loader will look for a file called <em>Panel.js</em><br> 
+						in the <em>/app/view/detail</em> directory.<br><br></li>
+				</ul>
+			</section>
+			
+	<!--
+	Inside a Class
+	-->				
+			<section>
+				<h2>Inside the Panel.js Class</h2>
+				<p>Ext classes have a powerful set of pre-processors which takes care of everything related 
+					to class creation, including inheritance, mixins, configuration and statics</p>
+				<div class="left w60"><pre><code>
+Ext.define('MyApp.view.company.detail.Panel', {
+  extend: 'Ext.panel.Panel',
+  <span class="fragment">
+  xtype: 'companydetail',
 
-					<aside class="notes">
-						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you run the speaker notes server.
-					</aside>
-				</section>
-				
-				<!-- Example of nested vertical slides -->
-				<section>
-					<section>
-						<h2>Vertical Slides</h2>
-						<p>
-							Slides can be nested inside of other slides,<br/>
-							try pressing <a href="#/2/1">down</a>.
-						</p>
-						<a href="#/2/1" class="image">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png">
-						</a>
-					</section>
-					<section>
-						<h2>Basement Level 1</h2>
-						<p>Press down or up to navigate.</p>
-					</section>
-					<section>
-						<h2>Basement Level 2</h2>
-						<p>Cornify</p>
-						<a class="test" href="http://cornify.com">
-							<img width="280" height="326" src="https://s3.amazonaws.com/hakim-static/reveal-js/cornify.gif">
-						</a>
-					</section>
-					<section>
-						<h2>Basement Level 3</h2>
-						<p>That's it, time to go back up.</p>
-						<a href="#/2" class="image">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" style="-webkit-transform: rotate(180deg);">
-						</a>
-					</section>
-				</section>
+  requires: [ 'MyApp.model.Company' ],
 
-				<section>
-					<h2>Holistic Overview</h2>
-					<p>
-						Press <strong>ESC</strong> to enter the slide overview!
-					</p>
-				</section>
-
-				<section>
-					<h2>Works in Mobile Safari</h2>
-					<p>
-						Try it out! You can swipe through the slides pinch your way to the overview.
-					</p>
-				</section>
-
-				<section>
-					<h2>Transition Styles</h2>
-					<p>
-						You can select from different transitions, like:
-					</p>
-					<ul>
-						<li><a href="http://lab.hakim.se/reveal-js/?transition=cube">Cube</a></li>
-						<li><a href="http://lab.hakim.se/reveal-js/?transition=page">Page</a></li>
-						<li><a href="http://lab.hakim.se/reveal-js/?transition=concave">Concave</a></li>
-						<li><a href="http://lab.hakim.se/reveal-js/?transition=linear">Linear</a></li>
-					</ul>
-				</section>
-
-				<section>
-					<h2>Marvelous Unordered List</h2>
-					<ul>
-						<li>No order here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-					</ul>
-				</section>
-				
-				<section>
-					<h2>Fantastic Ordered List</h2>
-					<ol>
-						<li>One is smaller than...</li>
-						<li>Two is smaller than...</li>
-						<li>Three!</li>
-					</ol>
-				</section>
-
-				<section>
-					<section data-state="alert">
-						<h2>Global State</h2>
-						<p>
-							Set <code>data-state="something"</code> on a slide and <code>"something"</code>
-							will be added as a class to the document element when the slide is open. This let's you
-							apply broader style changes, like switching the background.
-						</p>
-						<a href="#/7/1" class="image">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png">
-						</a>
-					</section>
-					<section data-state="blackout">
-						<h2>"blackout"</h2>
-						<a href="#/7/2" class="image">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png">
-						</a>
-					</section>
-					<section data-state="soothe">
-						<h2>"soothe"</h2>
-						<a href="#/7/0" class="image">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" style="-webkit-transform: rotate(180deg);">
-						</a>
-					</section>
-				</section>
-
-				<section data-state="customevent">
-					<h2>Custom Events</h2>
-					<p>
-						Additionally custom events can be triggered on a per slide basis by binding to the <code>data-state</code> name.
-					</p>
-					<pre><code contenteditable style="font-size: 18px; margin-top: 20px;">Reveal.addEventListener( 'customevent', function() {
-	console.log( '"customevent" has fired' );
-} );
-					</code></pre>
-				</section>
-
-				<section>
-					<h2>Clever Quotes</h2>
-					<p>
-						These guys come in two forms, inline: <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						The nice thing about standards is that there are so many to choose from</q> and block:
-					</p>
-					<blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						For years there has been a theory that millions of monkeys typing at random on millions of typewriters would 
-						reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.
-					</blockquote>
-				</section>
-				
-				<section>
-					<h2>Pretty Code</h2>
-					<pre><code contenteditable>
-function linkify( selector ) {
-  if( supports3DTransforms ) {
-    
-    var nodes = document.querySelectorAll( selector );
-
-    for( var i = 0, len = nodes.length; i < len; i++ ) {
-      var node = nodes[i];
-
-      if( !node.className ) ) {
-        node.className += ' roll';
-      }
-    };
+  layout: {
+    type: 'hbox'
+  },
+  </span>	
+  initComponent: function() {
+    <span class="fragment">this.items = [ ]; //TODO - add items</span>
+    this.callParent();
   }
-}
-					</code></pre>
-					<p>Courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
-				</section>
-				
-				<section>
-					<h2>Intergalactic Interconnections</h2>
-					<p>
-						You can link between slides internally,<br/>
-						<a href="#/2/3">like this</a>.
-					</p>
-				</section>
-
-				<section>
-					<h2>Fragmented Views</h2>
-					<p>Hit the next arrow...</p>
-					<p class="fragment">... to step through ...</p>
-					<ol>
-						<li class="fragment"><code>any type</code></li>
-						<li class="fragment"><em>of view</em></li>
-						<li class="fragment"><strong>fragments</strong></li>
-					</ol>
-				</section>
-				
-				<section>
-					<h2>Spectacular image!</h2>
-					<a class="image" href="http://hakim.se/experiments/html5/breakdom/" target="_blank">
-						<img width="320" height="412" src="https://s3.amazonaws.com/hakim-static/reveal-js/breakdom.png">
-					</a>
-				</section>
-				
-				<section>
-					<h2>Stellar Links</h2>
-					<ul>
-						<li><a href="https://github.com/hakimel/reveal.js">Source code on github</a></li>
-						<li><a href="http://hakim.se/projects/reveal-js">Read more on my site</a></li>
-						<li><a href="http://twitter.com/hakimel">Follow me on Twitter</a></li>
-					</ul>
-				</section>
-				
-				<section>
-					<h1>THE END</h1>
-					<h3 class="inverted">BY Hakim El Hattab / hakim.se</h3>
-				</section>
-			</div>
-
-			<!-- The navigational controls UI -->
-			<aside class="controls">
-				<a class="left" href="#">&#x25C4;</a>
-				<a class="right" href="#">&#x25BA;</a>
-				<a class="up" href="#">&#x25B2;</a>
-				<a class="down" href="#">&#x25BC;</a>
-			</aside>
-
-			<!-- Presentation progress bar -->
-			<div class="progress"><span></span></div>
-			
-		</div>
-
-		<script src="lib/js/head.min.js"></script>
-
-		<script>
-			// Load reveal.js as well as a classList polyfill if needed
-			head.js( !document.body.classList ? 'lib/js/classList.js' : null )
-				.js( 'js/reveal.js', function() {
-
-				// Parse the query string into a key/value object
-				var query = {};
-				location.search.replace( /[A-Z0-9]+?=(\w*)/gi, function(a) {
-					query[ a.split( '=' ).shift() ] = a.split( '=' ).pop();
-				} );
-
-				// Fires when a slide with data-state=customevent is activated
-				Reveal.addEventListener( 'customevent', function() {
-					console.log( '"customevent" has fired' );
-				} );
-
-				// Fires each time a new slide is activated
-				Reveal.addEventListener( 'slidechanged', function( event ) {
-					// event.previousSlide, event.currentSlide, event.indexh, event.indexv
-				} );
-
-				// Full list of configuration options available here:
-				// https://github.com/hakimel/reveal.js#configuration
-				Reveal.initialize({
-					controls: true,
-					progress: true,
-					history: true,
-					
-					theme: query.theme || 'default', // default/neon/beige
-					transition: query.transition || 'default' // default/cube/page/concave/linear(2d)
-				});
-
-			} );
-			
-			// Load highlight.js for syntax highlighting of code samples
-			head.js( 'lib/js/highlight.js', function() { 
-				hljs.initHighlightingOnLoad(); 
-			} );
-
-			// If we're runnning the notes server we need to include some additional JS
-			// TODO Is there a better way to determine if we're running the notes server?
-			if( window.location.host === 'localhost:1947' ) {
-				head.js( 'socket.io/socket.io.js', 'plugin/speakernotes/client.js' );
-			}
-		</script>
+});					</code></pre></div>
+				<div class="left w35"><ol>
+					<li>
+						<em>Use Ext.Define</em> to create your class
+						<ul>
+							<li>'className'</li>
+							<li>configuration object</li>
+						</ul>
+					</li>
+					<li>Use the <em>extend property</em> for inheritance</li>
+					<li>
+						Add the <em>initComponent()</em> method
+						<ul>
+							<li>constructor logic for subclasses<br>of Ext.Component</li>
+							<li>don't forget to call this.callParent()</li>
+						</ul>
+					</li>
+					<li>Add any extra properties</li>
+					<li>Add items / content </li>
+				</ol></div>
+			</section>
+		</section>
 		
-	</body>
+<!--
+Hello World Test - index.html
+-->				
+		<section>
+			<section>
+				<h2>Hello World Test</h2>
+				<p>
+					Checking if everything is all right...
+				</p>
+				<img src="lib/images/hello.jpg">
+			</section>
+
+			<section>
+				<h2>Hello World Test</h2>
+				<em>index.html</em>
+				<pre><code>
+&lt;!DOCTYPE html>
+&lt;html>
+&lt;head>
+  &lt;title>Hello Prov:JS&lt;/title>
+
+  &lt;link rel="stylesheet" type="text/css" href="extjs/resources/css/ext-all.css">
+
+  &lt;!-- for development use ext-debug.js -->
+  &lt;script type="text/javascript" src="extjs/ext-debug.js"></script>
+  &lt;script type="text/javascript" src="app.js"></script>
+&lt;/head>
+&lt;body>&lt;/body>
+&lt;/html>				
+				</code></pre>
+			</section>
+
+<!--
+Quick App - app.js
+-->				
+			<section>
+				<h2>A Quick App</h2>
+				<em>app.js</em>
+				<pre><code>
+Ext.Loader.setConfig({
+    enabled: true
+});
+
+Ext.application({
+    name: 'MyApp',
+    autoCreateViewport: true,
+
+    launch: function() {
+        Ext.Msg.alert('Lauched!','Our first app.');
+    }
+});			
+				</code></pre>
+			</section>
+
+<!--
+Quick App - Viewport.js
+-->				
+			<section>
+				<h2>A Quick App</h2>
+				<em>viewport.js</em>
+				<pre><code>
+Ext.define('MyApp.view.Viewport', {
+    extend: 'Ext.container.Viewport',
+
+    layout: 'fit',
+    items: [
+        {
+            title: 'Providence JavaScript',
+            html: 'Hello Prov:JS'
+        }
+    ]
+});			
+				</code></pre>
+			</section>
+
+		</section>
+				
+<!--
+Compass
+-->				
+		<section>
+			<section>
+				<h2>Compass Setup</h2>
+				<p>
+					Adding some style					
+				</p>
+				<img src="lib/images/lion-cat.jpg">
+			</section>
+			<section>
+				<h2>Compass Setup</h2>
+				<p>
+					
+				</p>
+			</section>
+		</section>
+		
+<!--
+Deployment
+-->				
+		<section>
+			<section>
+				<h2>Deployment</h2>
+				<p>
+					Big Payload. Fast Response.				
+				</p>
+				<img src="lib/images/rocket-cat.jpg">
+			</section>
+			<section>
+				<h2>Deployment</h2>
+				<p>
+					
+				</p>
+			</section>
+		</section>
+		
+<!--
+End
+-->				
+		<section>
+			<h2>Starting a Project with ExtJS 4</h2>
+			<br>
+			<h3>Timothy Eagan - <a href="https://twitter.com/TimothyEagan">Twitter @TimothyEagan</a></h3>
+			<h3>Modus Create - <a href="moduscreate.com">moduscreate.com</a></h3>
+			<h3>Prov:JS - <a href="http://www.meetup.com/Prov-JS/">meetup.com</a></h3>
+			<h3>Slides - <a href="https://github.com/sulfurious/ProvJS1208">github.com/sulfurious/ProvJS1208</a></h3>
+			<img src="lib/images/passed-out-sm.jpg">
+		</section>
+	</div>
+
+	<!-- The navigational controls UI -->
+	<aside class="controls">
+		<a class="left" href="#">&#x25C4;</a>
+		<a class="right" href="#">&#x25BA;</a>
+		<a class="up" href="#">&#x25B2;</a>
+		<a class="down" href="#">&#x25BC;</a>
+	</aside>
+
+	<!-- Presentation progress bar -->
+	<div class="progress"><span></span></div>
+
+	<!-- Modus Logo -->
+	<div class="logo"></div>
+	
+</div>
+
+<script src="lib/js/head.min.js"></script>
+
+<script>
+	// Load reveal.js as well as a classList polyfill if needed
+	head.js( !document.body.classList ? 'lib/js/classList.js' : null )
+		.js( 'js/reveal.js', function() {
+
+		// Parse the query string into a key/value object
+		var query = {};
+		location.search.replace( /[A-Z0-9]+?=(\w*)/gi, function(a) {
+			query[ a.split( '=' ).shift() ] = a.split( '=' ).pop();
+		} );
+
+		// Fires when a slide with data-state=customevent is activated
+		Reveal.addEventListener( 'customevent', function() {
+			console.log( '"customevent" has fired' );
+		} );
+
+		// Fires each time a new slide is activated
+		Reveal.addEventListener( 'slidechanged', function( event ) {
+			// event.previousSlide, event.currentSlide, event.indexh, event.indexv
+		} );
+
+		// Full list of configuration options available here:
+		// https://github.com/hakimel/reveal.js#configuration
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			history: true,
+			
+			theme: query.theme || 'default', // default/neon/beige
+			transition: query.transition || 'default' // default/cube/page/concave/linear(2d)
+		});
+
+	} );
+	
+	// Load highlight.js for syntax highlighting of code samples
+	head.js( 'lib/js/highlight.js', function() { 
+		hljs.initHighlightingOnLoad(); 
+	} );
+
+	// If we're runnning the notes server we need to include some additional JS
+	// TODO Is there a better way to determine if we're running the notes server?
+	if( window.location.host === 'localhost:1947' ) {
+		head.js( 'socket.io/socket.io.js', 'plugin/speakernotes/client.js' );
+	}
+</script>
+	
+</body>
 </html>
