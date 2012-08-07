@@ -56,29 +56,31 @@ Requirements
 				<h2>Some Basic Requirements</h2>
 				<img src="lib/images/ikea-cat.jpg">
 			</section>
-			<h2>Some Basic Requirements</h2>
-			<ol>
-				<li class="fragment">
-					<strong>A decent JavaScript debugger</strong>
-					<ul>
-						<li><a href="http://www.google.com/chrome/">Google Chrome</a></li>
-						<li><a href="http://www.mozilla.com/en-US/firefox/fx/">Mozilla Firefox</a> 
-							with the <a href="http://getfirebug.com/">Firebug</a> plugin</li>
-					</ul>
-				</li>
-				<li class="fragment"><strong>Web Server</strong>
-					<ul>
-						<li>XHR over local file:// protocol is cross origin restricted</li>
-						<li>Try <a href="http://httpd.apache.org/">Apache</a></li>
-					</ul>
-				</li>
-				<li class="fragment"><strong>The Ext JS 4 SDK</strong>
-					<ul>
-						<li>Get the <a href="http://www.sencha.com/products/extjs/download/">Ext JS 4 SDK</a> and unzip it to your webroot</li>
-						<li>http://localhost/extjs/index.html should open the Ext Welcome page.</li>
-					</ul>
-				</li>
-			</ol>
+			<section>
+				<h2>Some Basic Requirements</h2>
+				<ol>
+					<li class="fragment">
+						<strong>A decent JavaScript debugger</strong>
+						<ul>
+							<li><a href="http://www.google.com/chrome/">Google Chrome</a></li>
+							<li><a href="http://www.mozilla.com/en-US/firefox/fx/">Mozilla Firefox</a> 
+								with the <a href="http://getfirebug.com/">Firebug</a> plugin</li>
+						</ul>
+					</li>
+					<li class="fragment"><strong>Web Server</strong>
+						<ul>
+							<li>XHR over local file:// protocol is cross origin restricted</li>
+							<li>Try <a href="http://httpd.apache.org/">Apache</a></li>
+						</ul>
+					</li>
+					<li class="fragment"><strong>The Ext JS 4 SDK</strong>
+						<ul>
+							<li>Get the <a href="http://www.sencha.com/products/extjs/download/">Ext JS 4 SDK</a> and unzip it to your webroot</li>
+							<li>http://localhost/extjs/index.html should open the Ext Welcome page.</li>
+						</ul>
+					</li>
+				</ol>
+			</section>
 		</section>
 
 	<!--
@@ -329,8 +331,95 @@ Deployment
 			<section>
 				<h2>Deployment</h2>
 				<p>
-					
+					The SDK tools are completely optional but easy way to create a minified "production-ready" 
+					build of all of	your JavaScript files.  JSBuider is the one we will use.
+					<ol>
+						<li>
+							Download the Sench SDK tools -
+							<a href="http://www.sencha.com/products/sdk-tools/">sencha.com/products/sdk-tools/</a>
+						</li>
+						<li>CD into your "MyApp" directory</li>
+						<li>
+							Create a JSB3 manifest.
+							<ul>
+								<li><pre><code>sencha create jsb -a index.html -p myapp.jsb3</code></pre> or</li>
+								<li><pre><code>sencha create jsb -a http://localhost/index.cfm -p myapp.jsb3</code></pre></li>
+								<li>-a : The HTML page to create the build from.  This can be a file name or a URL</li>
+								<li>-p : The name of the manifest file to build</li>
+								<li>-v : Verbose output to your command window</li>
+							</ul>
+						</li>
+					</ol>
 				</p>
+			</section>
+			<section>
+				<p>
+					The contents of myapp.jsb3
+					<pre><code>{
+    "projectName": "Project Name",
+    "licenseText": "Copyright(c) 2012 Company Name",
+    "builds": [{
+            "name": "All Classes",
+            "target": "all-classes.js",
+            "options": {
+                "debug": true
+            },
+            "files": []
+        },{
+            "name": "Application - Production",
+            "target": "app-all.js",
+            "compress": true,
+            "files": [{
+                    "path": "",
+                    "name": "all-classes.js"
+                },{
+                    "path": "",
+                    "name": "app.js"
+            }]
+        }
+    ],
+    "resources": []
+}</code></pre>
+				</p>
+			</section>
+			<section>
+				<ol start=4>
+					<li>
+						Run JSBuilder to combine and minify the files
+						<ul>
+							<li><pre><code>sencha build -p myapp.jsb3 -d <em>.</em></code></pre></li>
+							<li>-p : The name of the manifest file to use</li>
+							<li>-d : The location to put the new combined files. "." = this directory !</li>
+							<li>-v : Verbose output to your command window</li>
+						</ul>
+					</li>
+					<li>
+						This creates 2 files:
+						<ul>
+							<li>all-classes.js : Not minified - easier for debugging</li>
+							<li>
+								app-all.js : Minified file that contains all of your application code and all<br>
+								of the Ext JS classes it needs to run.
+							</li>
+						</ul>
+					</li>
+					<li>
+						In your index.html, replace
+						<ul>
+							<li>
+<pre><code>&lt;script type="text/javascript" src="extjs/ext-debug.js"></script>
+&lt;script type="text/javascript" src="app.js"></script>
+</code></pre>
+with
+							</li>
+							<li>
+<pre><code>&lt;script type="text/javascript" src="extjs/ext.js"></script>
+&lt;script type="text/javascript" src="app-all.js"></script>
+</code></pre>
+							</li>
+						</ul>
+					</li>
+				</ol>
 			</section>
 		</section>
 		
@@ -342,7 +431,7 @@ End
 			<br>
 			<h3>Timothy Eagan - <a href="https://twitter.com/TimothyEagan">Twitter @TimothyEagan</a></h3>
 			<h3>Modus Create - <a href="moduscreate.com">moduscreate.com</a></h3>
-			<h3>Prov:JS - <a href="http://www.meetup.com/Prov-JS/">meetup.com</a></h3>
+			<h3>Prov:JS - <a href="http://www.meetup.com/Prov-JS/">meetup.com/prov-js</a></h3>
 			<h3>Slides - <a href="https://github.com/sulfurious/ProvJS1208">github.com/sulfurious/ProvJS1208</a></h3>
 			<img src="lib/images/passed-out-sm.jpg">
 		</section>
