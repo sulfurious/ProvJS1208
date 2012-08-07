@@ -1,0 +1,81 @@
+@charset "UTF-8";
+$experimental-support-for-svg: true;
+
+$accentColor: #517f15;
+$button-default-background-gradient: 'matte-button';
+$font-family: "proxima-nova", sans-serif;
+
+$form-field-border-color: #999;
+$form-field-focus-border-color: $accentColor;
+
+$window-base-color: #167cce;
+
+@import 'compass';
+@import 'ext4/default/all';
+
+.x-window-body {
+    background: #fff;
+}
+
+.x-panel-body {
+  background: #EEE;
+  border: none;
+}
+
+.x-message-box {
+    .x-window-body {
+        background: #eee;
+    }
+    .x-window-header-text {
+        color: #fff;
+        font-size: 15px;
+        font-weight: bold;
+    }
+    .x-toolbar-docked-bottom {
+        background: #eee;
+        margin-top: 0;
+    }
+    .x-form-display-field {
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .x-btn {
+      @include background-image(linear-gradient(darken(#167cce, 10), darken(#0d60a3, 10)));
+      @include border-radius(5px);
+      padding: 3px 5px;
+
+      .x-btn-inner {
+        font-weight: bold;
+        font-size: 13px;
+        color: #fff !important;
+        @include text-shadow(0px 1px #000);
+      }
+
+      &.x-btn-over {
+        @include background-image(linear-gradient(lighten(#167cce, 10), lighten(#0d60a3, 10)));
+      }
+
+      &.x-btn-pressed {
+        @include background-image(linear-gradient(darken(#034073, 5), darken(#095391, 5)));
+      }
+
+    }
+
+}
+
+.x-mask-msg {
+  border-color: #999;
+  @include border-radius(5px);
+  padding: 0;
+  background-color: #fff;
+
+  div {
+    padding: 10px 10px 10px 35px;
+    background-position: 10px center;
+    border: none;
+    background-color: transparent;
+    color: #333;
+    font-weight: bold;
+  }
+}
