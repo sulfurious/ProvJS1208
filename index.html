@@ -42,7 +42,6 @@ Title
 			<ul>
 				<li class="fragment">Basic Requirements</li>
 				<li class="fragment">Directory Structure</li>
-				<li class="fragment">Hello World Test</li>
 				<li class="fragment">Compass Setup</li>
 				<li class="fragment">Deployment</li>
 			</ul>
@@ -102,7 +101,7 @@ Requirements
 				<ul>
 					<li>MyApp</li>
 					<ul>
-						<li>app</li>
+						<li>app
 							<ul>
 								<li>cmp <small>- custom base components</small></li>
 								<li>controller</li>
@@ -111,13 +110,15 @@ Requirements
 								<li>view</li>
 								<li>utils <small>...and other directories as needed</small></li>
 							</ul>
+						</li>
 						<li>extjs</li>
-						<li>resources</li>
+						<li>resources
 							<ul>
 								<li>css</li>
 								<li>images</li>
 								<li>sass <small>- "compass watch" here</small></li>
 							</ul>
+						</li>
 						<li>app.js <small>- add to index.html</small></li>
 						<li>index.html <small>- single page app</small></li>
 					</ul>
@@ -168,10 +169,10 @@ Requirements
 					<li>When you instantiate a class, Ext JS checks to see if your<br> 
 						classname has already been defined. If it hasn't, the<br> 
 						loader will attempt to load the JavaScript file that cooresponds<br>
-						 to	your class name.<br><br></li>  
+						 to	your classname.<br><br></li>  
 					<li>For a classname of <em>MyApp.view.company.detail.Panel</em>,<br> 
 						the loader will look for a file called <em>Panel.js</em><br> 
-						in the <em>/app/view/detail</em> directory.<br><br></li>
+						in the <em>/app/view/company/detail</em> directory.<br><br></li>
 				</ul>
 			</section>
 			
@@ -183,7 +184,7 @@ Requirements
 				<p>Ext classes have a powerful set of pre-processors which takes care of everything related 
 					to class creation, including inheritance, mixins, configuration and statics</p>
 				<div class="left w60"><pre><code>
-Ext.define('MyApp.view.company.detail.Panel', {
+Ext.define('MyApp.view.company.detail.Panel', <span class="fragment">{
   extend: 'Ext.panel.Panel',
   <span class="fragment">
   xtype: 'companydetail',
@@ -198,7 +199,7 @@ Ext.define('MyApp.view.company.detail.Panel', {
     <span class="fragment">this.items = [ ]; //TODO - add items</span>
     this.callParent();
   }
-});					</code></pre></div>
+}</span>);			</code></pre></div>
 				<div class="left w35"><ol>
 					<li>
 						<em>Use Ext.Define</em> to create your class
@@ -236,8 +237,7 @@ Hello World Test - index.html
 			<section>
 				<h2>Hello World Test</h2>
 				<em>index.html</em>
-				<pre><code>
-&lt;!DOCTYPE html>
+				<pre><code>&lt;!DOCTYPE html>
 &lt;html>
 &lt;head>
   &lt;title>Hello Prov:JS&lt;/title>
@@ -249,18 +249,16 @@ Hello World Test - index.html
   &lt;script type="text/javascript" src="app.js"></script>
 &lt;/head>
 &lt;body>&lt;/body>
-&lt;/html>				
-				</code></pre>
+&lt;/html></code></pre>
 			</section>
 
 <!--
-Quick App - app.js
+Hello World Test - app.js
 -->				
 			<section>
-				<h2>A Quick App</h2>
+				<h2>Hello World Test</h2>
 				<em>app.js</em>
-				<pre><code>
-Ext.Loader.setConfig({
+				<pre><code>Ext.Loader.setConfig({
     enabled: true
 });
 
@@ -271,18 +269,16 @@ Ext.application({
     launch: function() {
         Ext.Msg.alert('Lauched!','Our first app.');
     }
-});			
-				</code></pre>
+});</code></pre>
 			</section>
 
 <!--
-Quick App - Viewport.js
+Hello World Test - Viewport.js
 -->				
 			<section>
-				<h2>A Quick App</h2>
+				<h2>Hello World Test</h2>
 				<em>viewport.js</em>
-				<pre><code>
-Ext.define('MyApp.view.Viewport', {
+				<pre><code>Ext.define('MyApp.view.Viewport', {
     extend: 'Ext.container.Viewport',
 
     layout: 'fit',
@@ -292,8 +288,11 @@ Ext.define('MyApp.view.Viewport', {
             html: 'Hello Prov:JS'
         }
     ]
-});			
-				</code></pre>
+});</code></pre>
+			</section>
+			<section>
+				<h2>Hello World Test</h2>
+				<img src="lib/images/hello-world.jpg">
 			</section>
 
 		</section>
@@ -311,10 +310,150 @@ Compass
 			</section>
 			<section>
 				<h2>Compass Setup</h2>
-				<p>
-					
-				</p>
+				<p><em>A Quick Intro</em><br><br></p>
+				<ul>
+					<li>
+						Sass is an extension of CSS3.  It adds nested rules, variables, <br>
+						mixins, selector inheritance and more. <br><br>
+					</li>
+					<li>
+						Compass extends SASS by providing CSS3 mixins and the ability to<br>
+						compile a whole directory tree of SASS files into one CSS file.
+					</li>					
+				</ul>
 			</section>
+			<section>
+				<h2>Compass Setup</h2>
+				<p><em>A SASS stylesheet - app.scss</em></p>
+				<pre><code>@charset "UTF-8";
+
+$base-color: #167cce;
+$font-family: "proxima-nova", sans-serif;
+$gradient-blue: linear-gradient(#0d60a3, #074e89);
+$dft-padding: 5;
+
+@import 'compass';
+@import 'ext4/default/all';
+
+.x-window-body {
+    background: #fff;
+}
+.x-panel-header {
+  @include background-image($gradient-blue);
+  padding: $dft-padding * 2px;
+}			</code></pre>
+				Ext JS variables - the Myapp/Extjs/Resources/Themes/Stylesheets/Ext4/Default/Variables<br>
+				directory contains all of the defined variables for each component in Ext JS ($base-color).</li>
+
+			</section>
+			<section>
+				<h2>Compass Setup</h2>
+				<pre><code>.x-panel-header {
+  @include background-image($gradient-blue);
+  padding: $dft-padding * 2px;
+}</code></pre>
+				<em>compiles into</em>
+				<pre><code>/* line 28, ../sass/app.scss */
+.x-panel-header {
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #0d60a3), color-stop(100%, #074e89));
+  background-image: -webkit-linear-gradient(#0d60a3, #074e89);
+  background-image: -moz-linear-gradient(#0d60a3, #074e89);
+  background-image: -o-linear-gradient(#0d60a3, #074e89);
+  background-image: -ms-linear-gradient(#0d60a3, #074e89);
+  background-image: linear-gradient(#0d60a3, #074e89);
+  padding: 10px; }
+				</code></pre>
+			</section>
+			<section>
+				<h2>Compass Setup</h2>
+				<p><em>Before</em></p>
+				<img src="lib/images/hello-world.jpg">
+			</section>
+			<section>
+				<h2>Compass Setup</h2>
+				<p><em>After</em></p>
+				<img src="lib/images/hello-world-scss.jpg">
+			</section>
+			<section>
+				<h2>Compass Setup</h2>
+				<p><em>Installlation</em></p>
+				<ol>
+					<li>
+						RUBY
+						<ul>
+							<li>Mac OSX - Install XCode from the <a href="http://developer.apple.com/xcode/">Apple Developer site</a></li></li>
+							<li>Windows - Download the latest Ruby Installer from <a href="http://rubyinstaller.org/">rubyinstaller.org</a></li>
+						</ul>
+					</li>
+					<li>
+						Compass Gem
+						<ul>
+							<li>Mac OSX - From the Terminal.app: <em><i>sudo gem install compass</i></em></li>
+							<li>
+								Windows - Click on <em>Command Prompt with Ruby</em> from the Start Menu<br>
+								Ruby commands may work from a regular command line depending on your install<br>
+								From the command window: <em><i>gem install compass</i></em>
+							</li>
+						</ul>
+					</li>					
+				</ol>
+			</section>
+			<section>
+				<h2>Compass Setup</h2>
+				<p><em>Directory Structure</em></p>
+				<ul>
+					<li>MyApp
+					<ul>
+						<li>app</li>
+						<li>extjs</li>
+						<li>resources
+							<ul>
+								<li>css</li>
+								<li>images</li>
+								<li>
+									sass
+									<ul>
+										<li>app.scss</li>
+										<li>
+											config.rb
+											<pre><code># $ext_path is the path to where Ext JS is installed
+# this path should be relative to the config.rb file
+$ext_path = "../../extjs"</code></pre>											
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
+					</li>
+				</ul>
+			</section>
+			<section>
+				<h2>Compass Setup</h2>
+				<p><em>Compiling</em></p>
+				<ol>
+					<li>Change into your /myapp/resources/sass directory</li>
+					<li>Type: <em><i>compass compile</i></em></li>
+					<li>or type: <em><i>compass watch</i></em></li>
+					<li>Compass will compile your .scss file into the /myapp/resources/css directory
+					<li>
+						In your index.html file, replace
+<pre><code>&lt;link rel="stylesheet" type="text/css" href="extjs/resources/css/ext-all.css" /></code></pre>
+with your new
+<pre><code>&lt;link rel="stylesheet" type="text/css" href="resources/css/app.css" /></code></pre>
+					</li>
+				</ol>
+			</section>
+			<section>
+				<h2>Compass Setup</h2>
+				<p><em>More Info</em></p>
+				<ol>
+					<li>Sass - <a href="http://sass-lang.com/">sass-lang.com</a></li>
+					<li>Compass - <a href="http://compass-style.org/">compass-style.org</a></li>
+					<li>Ext JS variables - the Myapp/Extjs/Resources/Themes/Stylesheets/Ext4/Default/Variables<br>
+					 	directory contains all of the defined variables for each component in Ext JS.</li>
+				</ol>
+			</section>			
 		</section>
 		
 <!--
@@ -331,7 +470,7 @@ Deployment
 			<section>
 				<h2>Deployment</h2>
 				<p>
-					The SDK tools are completely optional but easy way to create a minified "production-ready" 
+					The SDK tools are a completely optional but easy way to create a minified "production-ready" 
 					build of all of	your JavaScript files.  JSBuider is the one we will use.
 					<ol>
 						<li>
@@ -340,13 +479,13 @@ Deployment
 						</li>
 						<li>CD into your "MyApp" directory</li>
 						<li>
-							Create a JSB3 manifest.
+							Create a JSBuilder (jsb3) manifest file.
 							<ul>
 								<li><pre><code>sencha create jsb -a index.html -p myapp.jsb3</code></pre> or</li>
 								<li><pre><code>sencha create jsb -a http://localhost/index.cfm -p myapp.jsb3</code></pre></li>
-								<li>-a : The HTML page to create the build from.  This can be a file name or a URL</li>
-								<li>-p : The name of the manifest file to build</li>
-								<li>-v : Verbose output to your command window</li>
+								<li>-a : The HTML page to create the build from.  This can be a file name or a URL.</li>
+								<li>-p : The name of the manifest file to build.</li>
+								<li>-v : Verbose output to your command window.</li>
 							</ul>
 						</li>
 					</ol>
@@ -428,12 +567,20 @@ End
 -->				
 		<section>
 			<h2>Starting a Project with ExtJS 4</h2>
-			<br>
-			<h3>Timothy Eagan - <a href="https://twitter.com/TimothyEagan">Twitter @TimothyEagan</a></h3>
-			<h3>Modus Create - <a href="moduscreate.com">moduscreate.com</a></h3>
-			<h3>Prov:JS - <a href="http://www.meetup.com/Prov-JS/">meetup.com/prov-js</a></h3>
-			<h3>Slides - <a href="https://github.com/sulfurious/ProvJS1208">github.com/sulfurious/ProvJS1208</a></h3>
-			<img src="lib/images/passed-out-sm.jpg">
+			<ul>
+				<li class="fragment">Install a local web server</li>
+				<li class="fragment">Follow the recommended directory structure</li>
+				<li class="fragment">Take advantage of Compass</li>
+				<li class="fragment">Use the deployment tools</li>
+			</ul>
+			<br><br>
+			<p class="fragment">
+				Timothy Eagan - <a href="https://twitter.com/TimothyEagan">Twitter: @TimothyEagan</a><br>
+				Modus Create - <a href="moduscreate.com">moduscreate.com</a><br>
+				Prov:JS - <a href="http://www.meetup.com/Prov-JS/">meetup.com/prov-js</a><br>
+				Slides - <a href="https://github.com/sulfurious/ProvJS1208">github.com/sulfurious/ProvJS1208</a><br>
+				<img src="lib/images/passed-out-sm.jpg">
+			</p>
 		</section>
 	</div>
 

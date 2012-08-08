@@ -37,6 +37,11 @@
     font-style: normal;
 }
 
+.reveal i {
+    font-size: 36px;
+    font-family: monospace;
+}
+
 .reveal code {
     font-size: 20pt;
     font-weight: bold;
