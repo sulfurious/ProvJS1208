@@ -2,11 +2,11 @@
 
 These are the slides for the August, 2012 Prov:JS meetup.
 
-Cheers,
-Timothy Eagan 
-Twitter - <a href="https://twitter.com/TimothyEagan">@TimothyEagan</a>
-Modus Create - <a href="moduscreate.com">moduscreate.com</a>
-Prov:JS - <a href="http://www.meetup.com/Prov-JS/">meetup.com/prov-js</a>
+Cheers,<br>
+Timothy Eagan <br>
+Twitter - <a href="https://twitter.com/TimothyEagan">@TimothyEagan</a><br>
+Modus Create - <a href="moduscreate.com">moduscreate.com</a><br>
+Prov:JS - <a href="http://www.meetup.com/Prov-JS/">meetup.com/prov-js</a><br>
 Slides - <a href="https://github.com/sulfurious/ProvJS1208">github.com/sulfurious/ProvJS1208</a>
 
 
